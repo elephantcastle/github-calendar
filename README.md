@@ -1,6 +1,6 @@
 # Api for user contributions on github
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed on Heroku on https://github-contribution-api.herokuapp.com/
 
 ## Available Scripts
 
