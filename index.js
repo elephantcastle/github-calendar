@@ -12,9 +12,7 @@ let server = app.listen(port, function () {
 app.get("/", function (req, res) {
 	res.send(
 		"howto: </br>\
-		/commits/:user - returns array with number of commits everyday</br>\
-		/total/:user - returns total number of commits this year</br>\
-		/commits/last/:user - returns number of commits for last 31 days"
+		/commits/:user - returns total number of commits this year</br>"
 	);
 });
 
