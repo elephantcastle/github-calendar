@@ -21,16 +21,18 @@ app.get('/commits/:user', async (req, res) => {
 	let response = await axios(`https://github.com/users/${req.params.user}/contributions`);
 	const root = parser.parse(response.data);
 	const main = root.querySelector('.ContributionCalendar')
-
-	const calendarDays = root.querySelectorAll('.ContributionCalendar-day')
+	let total = 0
+	const calendarDays = root.querySelectorAll('.js-calendar-graph-svg .ContributionCalendar-day')
 	const contributions = calendarDays.map(day => {
 		let info = {}
-		info['count'] = day['_attrs']['data-count']
+		const count = parseInt(day['_attrs']['data-count'])
+		total += count
+		info['count'] = count
 		info['intensity'] = day['_attrs']['data-level']
 		info['date'] = day['_attrs']['data-date']
 		return info
 	})
 
-	const data = { contributions, datefrom: main['_attrs']['data-from'], datato: main['_attrs']['data-to'] }
+	const data = { contributions, datefrom: main['_attrs']['data-from'], dateto: main['_attrs']['data-to'], total }
 	res.send(JSON.stringify(data))
 })
