@@ -1,12 +1,20 @@
-let express = require("express");
-let app = express();
-let port = process.env.PORT || 8080;
-let axios = require("axios");
-let parser = require("node-html-parser");
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 8080;
+const axios = require("axios");
+const parser = require("node-html-parser");
 
-let server = app.listen(port, function () {
+const server = app.listen(port, function () {
 	console.log("running on port: %s", port);
 });
+
+// Enable CORS for all methods
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+	next();
+});
+
 
 // setting up routes for the API
 app.get("/", function (req, res) {
